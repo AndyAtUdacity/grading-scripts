@@ -63,4 +63,58 @@ def getComment(responses):
 			grade_result["comment"] = comment
 			return
 
+		# coding_proficiency is between 0 and 9.
+		htmlSkill = responses['HTML']
+		cssSkill  = responses['CSS']
+		jsSkill   = responses['JavaScript']
+		coding_proficiency = htmlSkill + \
+							 cssSkill + \
+							 jsSkill
+
+		if coding_proficiency == 9: # student is fluent in all 3 languages.
+			comment += ("""You're already fluent in all the languages we will be
+				covering in this nanodegree! While this doesn't make you a web
+				developer, it may mean that you can find a shortened path through
+				this nanodegree. When you talk to your coach, make sure you discuss
+				your existing expertise and how it may influence your path through
+				the nanodegree.\n\n""")
+
+		elif (coding_proficiency >= 6) and (min(htmlSkill, cssSkill, jsSkill) >= 2):
+			comment += ("""Congratulations! Since you already have a strong foundation
+				in the languages we will be covering, you will be able to focus
+				your energy on learning the skills that take you from someone who knows
+				the languages to someone who is an expert web developer. Talk to your
+				coach about how your existing skills may influence your path through the
+				nanodegree.\n\n""")
+
+		elif (coding_proficiency >= 6):
+			comment += ("""Congratulations! Your expertise in some of the languages of
+				web development will be extremely helpful as you go through this nanodegree.\n\n""")
+
+		elif (coding_proficiency >= 4) and (jsSkill < htmlSkill) and (jsSkill < cssSkill):
+			comment += ("""It looks like you are a strong developer of static web pages.
+				As you probably know, becoming a professional web developer involves making dynamic pages
+				which requires a mastery of JavaScript. This nanodegree is a perfect fit
+				for you: you will build a deep understanding of the web and how HTML, CSS,
+				and JS combine to make rich interactive web pages.\n\n""")
+
+		elif (coding_proficiency >= 3) and (((jsSkill > htmlSkill) and (jsSkill >= cssSkill)) or ((jsSkill >= htmlSkill) and (jsSkill > cssSkill))):
+			comment += ("""JavaScript is often one of the most difficult things for new web
+				developers to learn. Your experience with it will be especially helpful as you start
+				piecing together HTML, CSS, and JS to create rich interactive web pages.
+				Your background makes you a great fit for this nanodegree.\n\n""")
+
+		elif coding_proficiency <= 1:
+			comment += ("""Since you are so new to the languages of web development, this
+				nanodegree will be very challenging. You can still become a web developer,
+				but you may want to consider doing more independent learning before committing
+				to this nanodegree. If you decide to continue make sure you discuss your
+				background with your coach.\n\n""")
+
+		else:
+			comment += ("""You are a perfect candidate for this nanodegree. You've got some
+				experience but are not yet a master in the languages of web development.\n\n""")
+
+		grade_result["comment"] = comment
+
 getComment(responses)
