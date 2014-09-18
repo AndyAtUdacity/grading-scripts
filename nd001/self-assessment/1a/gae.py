@@ -1,4 +1,5 @@
-grade_result["correct"] = True
+grade_result["correct"] = None
+grade_result["completed"] = True
 grade_result["comment"] = ''
 
 responses = {}
@@ -103,6 +104,12 @@ def getComment(responses):
 				developers to learn. Your experience with it will be especially helpful as you start
 				piecing together HTML, CSS, and JS to create rich interactive web pages.
 				Your background makes you a great fit for this nanodegree.\n\n""")
+
+		elif coding_proficiency == 0:
+			comment += ("""Unfortunately, this nanodegree is not for you. You will need to have
+				at least some experience in one of the three languages of web development to
+				be successful. Take Udacity's Intro to HTML and CSS and then come back and enroll
+				in the nanodegree.\n\n""")
 
 		elif coding_proficiency <= 1:
 			comment += ("""Since you are so new to the languages of web development, this
